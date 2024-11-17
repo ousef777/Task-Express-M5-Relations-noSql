@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 const postsRoutes = require('./api/posts/posts.routes');
+const authorRoutes = require('./api/authors/routes');
 const connectDb = require('./database');
 
 connectDb();
 app.use(express.json());
 app.use('/posts', postsRoutes);
+app.use('/author', authorRoutes);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Path not found' });
